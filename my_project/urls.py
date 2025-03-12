@@ -24,3 +24,12 @@ urlpatterns = [
     path('about/', about_views.about_me, name='about'),
     path('admin/', admin.site.urls),
 ]
+
+#failure to deploy to heroku, then added the code below,
+# from the forum response: https://forum.djangoproject.com/t/improper-configure-static-file/27559
+#https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/skeleton_website#hooking_up_the_url_mapper
+# Use static() to add URL mapping to serve static files during development (only)
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
